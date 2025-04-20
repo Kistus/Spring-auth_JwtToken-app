@@ -1,12 +1,11 @@
-FROM maven:latest AS stage1
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY pom.xml /app
+COPY pom.xml .
 RUN mvn dependency:resolve
-COPY . /app
-RUN mvn clean
+COPY . .
 RUN mvn package -DskipTests
 
-FROM openjdk:20 as final
-COPY --from=stage1 /app/target/*.jar app.jar
+FROM eclipse-temurin:17-jdk
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-CMD ["java","-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]

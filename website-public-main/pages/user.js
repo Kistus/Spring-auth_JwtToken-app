@@ -15,7 +15,7 @@ const User = () => {
     }, [])
 
     async function fetchContent() {
-        const res = await fetch('http://localhost:8080/secured/user',  { 
+        const res = await fetch('http://192.168.49.2:31234/secured/user',  {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token")

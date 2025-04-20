@@ -14,25 +14,22 @@ const About = () => {
 
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1>Kanstantsin</h1>
-          <div className={styles.containerImage}>
-            <Image
-              src="../public/kist.jpg"
-              alt="Picture of the author"
-              width={200}
-              height={200}
-            />
+          <h1>Kanstantsin - Software engineer</h1>
+          <div className={styles.collage}>
+            <Image src="/kist1.jpg" alt="kist1" width={200} height={200} />
+            <Image src="/kist2.jpg" alt="kist2" width={200} height={200} />
+            <Image src="/kist3.jpg" alt="kist3" width={200} height={200} />
           </div>
+
           <div className={styles.footContainer}>
             <div className={styles.block}>
               <h5>Eduaction</h5>
               <ul>
                 <li>Gdansk University of Technology</li>
-                <li>4th year</li>
                 <li>Bachelour of Engeneering</li>
                 <li>Computer Science</li>
                 <li>2021 - 2025</li>
-                <li>GPA 4.3\5</li>
+                <li>GPA 4.1\5</li>
               </ul>
             </div>
             <div className={styles.block}>
@@ -49,8 +46,8 @@ const About = () => {
               <ul>
                 <li>Gym</li>
                 <li>Calistenics</li>
-                <li>Football</li>
-                <li>Swimming</li>
+                <li>Ski</li>
+                <li>Surfing</li>
                 <li>RasberryPI</li>
                 <li>Software development</li>
                 <li>Travelling</li>
@@ -73,6 +70,7 @@ const About = () => {
                 <li>lofi</li>
                 <li>EDM</li>
                 <li>Classic pop and not only...</li>
+                <li>Rock</li>
               </ul>
             </div>
           </div>

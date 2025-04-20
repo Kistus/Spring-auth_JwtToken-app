@@ -24,7 +24,7 @@ export default function SignIn() {
     
         async function handle() {
             localStorage.clear()
-            const res = await fetch('http://localhost:8080/auth/signin', {
+            const res = await fetch('http://192.168.49.2:31234/auth/signin', {
     
                 method: 'POST',
                 body: JSON.stringify(state),
@@ -36,7 +36,7 @@ export default function SignIn() {
             const json = await res.text()
             console.log(json)
             localStorage.setItem("token", json)
-            router.push('/index')
+            router.push('/')
         }
         else {
 

@@ -1,54 +1,42 @@
-import { route } from 'next/dist/next-server/server/router'
 import Link from 'next/link'
 import Script from 'next/script'
-import { useState } from 'react'
-import { useEffect } from 'react'
-
+import { useEffect, useState } from 'react'
 import router from 'next/router'
 
 const Nav = () => {
+    const [token, setToken] = useState(null)
 
-    const [item , setItem] = useState("")
     useEffect(() => {
-        console.log(localStorage.getItem("token"))
-        setItem(localStorage.getItem("token"))
+        const storedToken = localStorage.getItem("token")
+        setToken(storedToken)
     }, [])
 
-
-    function logout() {
+    const logout = () => {
         localStorage.removeItem("token")
-        router.push("/index")
+        setToken(null)
+        router.push("/")
     }
 
     return (
         <>
-        <Script src="../js/toggle.js"></Script>
-        <nav className="navbar-links">
-            <ul className="nav-links">
-                {
-                    item !== null ?
-                    <li><Link href="/user">User</Link></li>
-                    : null
-                }
-                {
-                    item !== null ?
-                    <li onClick={logout}><Link href="/">LogOut</Link></li>
-                    : null
-                }
-                <li><Link href="/signin">SignIn</Link></li>
-                <li><Link href="/signup">SignUp</Link></li>
-                <li><Link href="/about">About me</Link></li>
-                <li><a href="https://kistus.github.io/CV/" target="blank">My CV</a>
-                </li>
-            </ul>
-            <a className="burg">
-                <div className="line1"></div>
-                <div className="line2"></div>
-                <div className="line3"></div>
-            </a>
-        </nav>
-    </>
+            <Script src="../js/toggle.js" />
+            <nav className="navbar-links">
+                <ul className="nav-links">
+                    {token && <li><Link href="/user">User</Link></li>}
+                    {token && <li><a onClick={logout}>LogOut</a></li>}
+                    {!token && <li><Link href="/signin">SignIn</Link></li>}
+                    {!token && <li><Link href="/signup">SignUp</Link></li>}
+                    <li><Link href="/about">About me</Link></li>
+                    <li><a href="https://kistus.github.io/CV/" target="_blank" rel="noreferrer">My CV</a></li>
+                </ul>
+                <a className="burg">
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                </a>
+            </nav>
+        </>
     )
 }
 
-export default Nav;
+export default Nav

@@ -17,6 +17,7 @@
 * Launched with Postgres
 * Tested with Postman and React app
 * REady to be hosted (already contenirized with Docker)
+* Kubernetes via Minicube
 
 
 ## How To Use
@@ -33,6 +34,35 @@ $ cd Spring-auth-JWTToken-app
 # Install dependencies
 
 # Run the app starting from entry point
+```
+
+## 3. 🐳 Build Docker Images inside Minikube
+
+### Start Minikube:
+
+```bash
+minikube start --driver=docker
+
+eval $(minikube docker-env)
+cd Spring-auth_JWTToken-app
+docker build -t springjwt:latest .
+
+cd website-public-main
+docker build -t frontend:latest .
+cd ../k8s
+
+# Deploy all services and deployments
+kubectl apply -f postgres-deployment.yml
+kubectl apply -f postgres-service.yml
+
+kubectl apply -f backend-deployment.yml
+kubectl apply -f backend-service.yml
+
+kubectl apply -f frontend-deployment.yml
+kubectl apply -f frontend-service.yml
+kubectl rollout restart deployment frontend
+kubectl rollout restart deployment spring-backend
+minikube service frontend
 ```
 
 > SCREENS
