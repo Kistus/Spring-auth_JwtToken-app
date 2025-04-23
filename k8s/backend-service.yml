@@ -10,4 +10,4 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 31234 # <-- You can pick a port between 30000-32767 or let K8s assign one
+      nodePort: 31234
