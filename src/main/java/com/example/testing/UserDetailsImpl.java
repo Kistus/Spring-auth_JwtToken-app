@@ -17,24 +17,20 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
     private String password;
     private String email;
-//    private String review;
 
-    // Create a static method to build UserDetailsImpl from the User object
     public static UserDetailsImpl build(User user) {
         return new UserDetailsImpl(
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail()
-//                user.getReview()
         );
     }
 
-    // Return authorities (roles/permissions). Start with an empty list or test roles
+   
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // You can add real authorities/roles here once they're defined in your User class
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")); // Dummy authority for testing
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")); 
     }
 
     @Override
